@@ -1,4 +1,3 @@
-
 import {useEffect,useState} from "react";
 import {motion,useScroll,useTransform} from "framer-motion";
 import {ArrowRight,Play,Menu} from "lucide-react";
@@ -45,7 +44,7 @@ const cases=[
 
 const results=[["10+","anos de experiência"],["50+","marcas e projetos"],["100k+","leads e oportunidades"],["360°","marca, mídia e comercial"]];
 
-function Logo({className=""}){return <img src={logo} className={className} onError={e=>e.currentTarget.src="/Logo-Alt.png"} alt="ALT Comunicação"/>}
+function Logo({className="",style}){return <img src={logo} className={className} style={style} onError={e=>e.currentTarget.src="/Logo-Alt.png"} alt="ALT Comunicação"/>}
 function SectionTitle({kicker,title,text}){return <div><div className="kicker">{kicker}</div><h2 className="section-title">{title}</h2>{text&&<p className="lead">{text}</p>}</div>}
 
 function Cursor(){
@@ -54,7 +53,7 @@ function Cursor(){
  return <><motion.div className="cursor-dot" animate={{x:pos.x-6,y:pos.y-6}} transition={{type:"spring",stiffness:700,damping:36}}/><motion.div className="cursor-ring" animate={{x:pos.x-22,y:pos.y-22}} transition={{type:"spring",stiffness:220,damping:28}}/></>
 }
 
-function Loading({show}){if(!show)return null;return <div className="loading"><div><Logo className="loading-logo"/><div className="loading-line"><span/></div><div className="loading-text">Carregando oportunidades...</div></div></div>}
+function Loading({show}){if(!show)return null;return <motion.div className="loading" initial={{opacity:1}} animate={{opacity:1}} exit={{opacity:0}}><motion.div initial={{opacity:0,y:18,scale:.96}} animate={{opacity:1,y:0,scale:1}} transition={{duration:.7,ease:"easeOut"}}><div style={{display:"flex",justifyContent:"center"}}><Logo className="loading-logo" style={{height:76,width:"auto",opacity:.92}}/></div><div className="loading-line" style={{width:220,marginTop:28}}><span/></div><div className="loading-text" style={{marginTop:18,letterSpacing:".28em",fontSize:10,color:"rgba(255,255,255,.52)"}}>Carregando oportunidades...</div></motion.div></motion.div>}
 
 function Navbar(){return <header className="navbar"><div className="container navbar-inner"><a href="#home"><Logo className="logo"/></a><nav className="nav-links"><a href="#problema">Problema</a><a href="#ecossistema">Ecossistema</a><a href="#metodo">Método</a><a href="#cases">Cases</a><a href="#resultados">Resultados</a><a href={videosLink} target="_blank">Vídeos</a><a href="#contato" className="nav-cta">Diagnóstico</a></nav><a href="#contato" className="mobile-menu"><Menu size={20}/></a></div></header>}
 
