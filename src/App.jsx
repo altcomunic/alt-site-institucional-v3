@@ -11,6 +11,16 @@ const appsScriptUrl="https://script.google.com/macros/s/AKfycbznzRZUtxhncHDloFvd
 const heroVideo="https://videos.pexels.com/video-files/3209828/3209828-uhd_2560_1440_25fps.mp4";
 const contactVideo="https://videos.pexels.com/video-files/3255275/3255275-uhd_2560_1440_25fps.mp4";
 
+const headerRefinement=`
+.navbar{background:rgba(0,0,0,.36)!important;backdrop-filter:blur(20px)!important;border-bottom:1px solid rgba(255,255,255,.075)!important}
+.navbar-inner{height:78px!important}
+.logo{height:45px!important;opacity:.94!important}
+.nav-links{gap:34px!important;align-items:center!important}
+.nav-links a{position:relative;transition:color .28s ease,opacity .28s ease,transform .28s ease}.nav-links a:not(.nav-cta):after{content:"";position:absolute;left:0;right:0;bottom:-10px;height:1px;background:#f26a2e;transform:scaleX(0);transform-origin:left;transition:transform .28s ease}.nav-links a:not(.nav-cta):hover:after{transform:scaleX(1)}
+.nav-cta{display:inline-flex!important;align-items:center!important;justify-content:center!important;padding:13px 22px!important;background:transparent!important;color:#fff!important;border:1.5px solid #f26a2e!important;border-radius:8px!important;font-size:12px!important;font-weight:800!important;letter-spacing:.18em!important;text-transform:uppercase!important;transition:background .28s ease,color .28s ease,transform .28s ease,box-shadow .28s ease,border-color .28s ease!important}.nav-cta:hover{background:#f26a2e!important;color:#000!important;border-color:#f26a2e!important;transform:translateY(-2px)!important;box-shadow:0 14px 32px rgba(242,106,46,.22)!important}
+@media(max-width:720px){.navbar-inner{height:72px!important}.logo{height:42px!important}}
+`;
+
 const problems=[
 ["Conteúdo sem estratégia","Publicações sem narrativa não constroem autoridade nem intenção de compra."],
 ["Tráfego sem funil","Campanhas sem oferta, CRM e processo viram custo difícil de defender."],
@@ -87,5 +97,5 @@ function Footer(){return <footer className="footer"><div className="container fo
 export default function App(){
  const[loading,setLoading]=useState(true); const{scrollYProgress}=useScroll(); const progressWidth=useTransform(scrollYProgress,[0,1],["0%","100%"]);
  useEffect(()=>{const t=setTimeout(()=>setLoading(false),1400);return()=>clearTimeout(t)},[]);
- return <div className="page"><motion.div className="progress" style={{width:progressWidth}}/><Cursor/><Loading show={loading}/><Navbar/><main><Hero/><Problems/><Ecosystem/><Method/><Cases/><Results/><Videos/><Contact/></main><Footer/></div>
+ return <div className="page"><style>{headerRefinement}</style><motion.div className="progress" style={{width:progressWidth}}/><Cursor/><Loading show={loading}/><Navbar/><main><Hero/><Problems/><Ecosystem/><Method/><Cases/><Results/><Videos/><Contact/></main><Footer/></div>
 }
